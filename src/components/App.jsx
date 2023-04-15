@@ -10,8 +10,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
   addContact = e => {
     e.preventDefault();
@@ -25,16 +23,16 @@ export class App extends Component {
       )
     ) {
       return alert(`${name} is already in contacts.`);
-    } else {
-      const contactObj = {
-        name,
-        number,
-        id: nanoid(),
-      };
-      this.setState(prevState => {
-        return { contacts: [...prevState.contacts, contactObj] };
-      });
     }
+    const contactObj = {
+      name,
+      number,
+      id: nanoid(),
+    };
+    this.setState(prevState => {
+      return { contacts: [...prevState.contacts, contactObj] };
+    });
+    Array.from(e.target).forEach(e => (e.value = ''));
   };
   deleteContact = id => {
     this.setState(prevState => ({
